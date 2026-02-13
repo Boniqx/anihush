@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dynamic-base-1: #1a1a23;
+  --dynamic-base-2: #27272a;
+  --dynamic-base-3: #3f3f46;
+  --dynamic-base-4: #52525b;
+  --dynamic-text-primary: #ffffff;
+  --dynamic-text-secondary: #a1a1aa;
+  --dynamic-brand-primary-color: #ff9900;
+  --dynamic-brand-secondary-color: #ffb700;
+  --dynamic-footer-background-color: #1a1a23;
+  --dynamic-modal-border: 1px solid #27272a;
+}
+
+@layer base {
+  :root {
+    --background: #000000;
+    --foreground: #ffffff;
+    --card: #121212;
+    --card-foreground: #ffffff;
+    --border: #27272a;
+    --input: #27272a;
+    --primary: #ffffff;
+    --primary-foreground: #000000;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --accent: #27272a;
+    --accent-foreground: #ffffff;
+  }
+
+  body {
+    @apply bg-background text-foreground tracking-tight;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
