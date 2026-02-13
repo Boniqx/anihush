@@ -1,5 +1,5 @@
 # pnpm lock file
-pnpm-lock.yaml
+# No longer ignored to support reproducible pnpm deployments
 
 # Dependencies
 node_modules/
