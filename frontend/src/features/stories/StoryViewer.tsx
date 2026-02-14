@@ -115,8 +115,15 @@ export default function StoryViewer({
 
         setTimeout(() => setToastMessage(""), 3000);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("Interaction failed", err);
+      // Show error toast
+      let message = err.message || "Failed to interact";
+      if (message === "Not authenticated") {
+        message = "Need to login to interact";
+      }
+      setToastMessage(message);
+      setTimeout(() => setToastMessage(""), 3000);
     }
   };
 
