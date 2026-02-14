@@ -40,8 +40,8 @@ func Interact(c *gin.Context) {
 	}
 
 	// 1. Fetch Companion Personality
-	var personalityType string
-	err := db.DB.QueryRow("SELECT personality_type FROM companions WHERE id = $1", req.CompanionID).Scan(&personalityType)
+	var personalityTypeNull sql.NullString
+	err := db.DB.QueryRow("SELECT personality_type FROM companions WHERE id = $1", req.CompanionID).Scan(&personalityTypeNull)
 	if err == sql.ErrNoRows {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Companion not found"})
 		return
@@ -49,6 +49,11 @@ func Interact(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch companion"})
 		return
+	}
+
+	personalityType := "Deredere" // Default
+	if personalityTypeNull.Valid {
+		personalityType = personalityTypeNull.String
 	}
 
 	// 1b. Fetch Story Mood if StoryID is present
