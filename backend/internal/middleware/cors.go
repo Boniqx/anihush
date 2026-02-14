@@ -12,7 +12,7 @@ import (
 // CORSMiddleware returns a CORS middleware configured for the frontend
 func CORSMiddleware() gin.HandlerFunc {
 	// Default allowed origins
-	allowedOrigins := []string{"http://localhost:3000", "http://localhost:3001", "https://anihush.bondev.site/"}
+	allowedOrigins := []string{"http://localhost:3000", "http://localhost:3001", "https://anihush.bondev.site"}
 
 	// Get allowed origins from environment
 	if envOrigins := os.Getenv("ALLOWED_ORIGINS"); envOrigins != "" {
