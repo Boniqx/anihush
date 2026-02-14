@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useCompanions } from "@/queries/companions";
 import CompanionCard from "./CompanionCard";
 
+// Trigger deployment
 export default function CompanionList() {
   const { data, isLoading, error } = useCompanions();
   const companions = data || [];
