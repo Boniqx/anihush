@@ -12,6 +12,7 @@ import {
   UserPlus,
   Coins,
 } from "lucide-react";
+import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useCompanions } from "@/queries/companions";
@@ -162,18 +163,20 @@ export default function Dashboard() {
                 <DynamicWidget />
               </div>
             ) : (
-              <div className="flex gap-2">
+              <div className="flex gap-2 shrink-0">
                 <Link
                   href="/login"
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#ff7e27] hover:bg-[#ff7e27]/10 rounded-lg transition-colors"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold text-[#ff7e27] hover:bg-[#ff7e27]/10 rounded-lg transition-colors"
                 >
-                  <LogIn className="w-3.5 h-3.5" /> Login
+                  <LogIn className="w-3.5 h-3.5" />{" "}
+                  <span className="hidden sm:inline">Login</span>
                 </Link>
                 <Link
                   href="/register"
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-[#ff7e27] text-black rounded-lg hover:bg-[#ff9a50] transition-colors"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold bg-[#ff7e27] text-black rounded-lg hover:bg-[#ff9a50] transition-colors"
                 >
-                  <UserPlus className="w-3.5 h-3.5" /> Register
+                  <UserPlus className="w-3.5 h-3.5" />{" "}
+                  <span className="hidden sm:inline">Register</span>
                 </Link>
               </div>
             )}
@@ -211,10 +214,12 @@ export default function Dashboard() {
                     className="w-[64px] h-[64px] rounded-full p-[2.5px] bg-gradient-to-br from-[#ff7e27] to-[#ffb700]"
                   >
                     <div className="w-full h-full rounded-full bg-[#0f0f12] p-[2px]">
-                      <img
+                      <Image
                         src={companion.avatar_url}
                         alt={companion.name}
-                        className="w-full h-full object-cover rounded-full"
+                        fill
+                        sizes="64px"
+                        className="object-cover rounded-full"
                       />
                     </div>
                   </div>
@@ -375,11 +380,15 @@ export default function Dashboard() {
               <div className="absolute left-[11px] top-2 bottom-2 w-[1px] bg-[#27272a]" />
               {RECENT_ACTIVITY.map((activity) => (
                 <div key={activity.id} className="flex gap-3 relative z-10">
-                  <img
-                    src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${activity.user}`}
-                    alt={activity.user}
-                    className="w-6 h-6 rounded-full bg-[#27272a] border border-[#1a1a23]"
-                  />
+                  <div className="relative w-6 h-6 rounded-full bg-[#27272a] border border-[#1a1a23] overflow-hidden shrink-0">
+                    <Image
+                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${activity.user}`}
+                      alt={activity.user}
+                      fill
+                      sizes="24px"
+                      className="object-cover"
+                    />
+                  </div>
                   <div>
                     <p className="text-xs text-[#aaa]">
                       <span className="text-[#eee] font-bold">
@@ -426,6 +435,7 @@ export default function Dashboard() {
 // --- Companion Card (reference-inspired design) ---
 function CompanionCard({ companion }: { companion: Companion }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { contextSafe } = useGSAP({ scope: cardRef });
 
   const onHover = contextSafe(() => {
@@ -455,10 +465,17 @@ function CompanionCard({ companion }: { companion: Companion }) {
         className="relative rounded-xl overflow-hidden cursor-pointer group h-full min-h-[300px] bg-[#1a1a23] border border-[#27272a] hover:border-[#ff7e27]/40 transition-colors"
       >
         {/* Full Background Image */}
-        <img
+        <Image
           src={companion.avatar_url}
           alt={companion.name}
-          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className={`object-cover group-hover:scale-110 transition-all duration-700 ${
+            isLoading
+              ? "blur-xl scale-110 grayscale"
+              : "blur-0 scale-100 grayscale-0"
+          }`}
+          onLoad={() => setIsLoading(false)}
         />
 
         {/* Gradient Overlay */}

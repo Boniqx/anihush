@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   Home,
@@ -41,10 +42,12 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="p-6 flex items-center gap-3">
         <Link href="/" className="flex items-center gap-2 group">
-          <img
+          <Image
             src="/logo.png"
             alt="Anihush Logo"
-            className="w-8 h-8 object-contain"
+            width={32}
+            height={32}
+            className="object-contain"
           />
           <h1 className="text-xl font-bold tracking-tight xl:block hidden group-hover:text-[#ff7e27] transition-colors">
             Anihush

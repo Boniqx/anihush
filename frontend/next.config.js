@@ -3,7 +3,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["placehold.co", "127.0.0.1", "danvffrfketxsyobresy.supabase.co"],
+    domains: [
+      "placehold.co",
+      "127.0.0.1",
+      "danvffrfketxsyobresy.supabase.co",
+      "api.dicebear.com",
+    ],
   },
   experimental: {
     serverActions: {
