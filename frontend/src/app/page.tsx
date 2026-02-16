@@ -164,20 +164,13 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className="flex gap-2 shrink-0">
-                <Link
-                  href="/login"
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold text-[#ff7e27] hover:bg-[#ff7e27]/10 rounded-lg transition-colors"
+                <button
+                  onClick={() => setShowAuthFlow(true)}
+                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold bg-[#ff7e27] text-black rounded-lg hover:bg-[#ff9a50] transition-colors"
                 >
-                  <LogIn className="w-3.5 h-3.5" />{" "}
-                  <span className="hidden sm:inline">Login</span>
-                </Link>
-                <Link
-                  href="/register"
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold bg-[#ff7e27] text-black rounded-lg hover:bg-[#ff9a50] transition-colors"
-                >
-                  <UserPlus className="w-3.5 h-3.5" />{" "}
-                  <span className="hidden sm:inline">Register</span>
-                </Link>
+                  <Coins className="w-3.5 h-3.5" />{" "}
+                  <span className="hidden sm:inline">Sync</span>
+                </button>
               </div>
             )}
           </header>
@@ -411,18 +404,12 @@ export default function Dashboard() {
                 Create an account to start chatting
               </p>
               <div className="space-y-2">
-                <Link
-                  href="/register"
+                <button
+                  onClick={() => setShowAuthFlow(true)}
                   className="block w-full py-2 bg-[#ff7e27] text-black text-xs font-bold rounded-lg hover:bg-[#ff9a50] transition-colors"
                 >
-                  Sign Up Free
-                </Link>
-                <Link
-                  href="/login"
-                  className="block w-full py-2 bg-[#27272a] text-[#eee] text-xs font-bold rounded-lg hover:bg-[#333] transition-colors"
-                >
-                  Login
-                </Link>
+                  Sync Wallet
+                </button>
               </div>
             </div>
           )}

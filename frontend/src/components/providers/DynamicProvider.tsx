@@ -43,6 +43,20 @@ export default function DynamicProvider({
           ],
         },
       }}
+      locale={{
+        en: {
+          dyn_login: {
+            title: {
+              all: "Sync your wallet",
+            },
+          },
+          dyn_wallet_list: {
+            title: {
+              connect: "Sync your wallet",
+            },
+          },
+        },
+      }}
     >
       {children}
     </DynamicContextProvider>
