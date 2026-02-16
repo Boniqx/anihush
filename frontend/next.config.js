@@ -2,6 +2,7 @@
 // Triggering deployment...
 const nextConfig = {
   reactStrictMode: true,
+  output: "standalone",
   images: {
     domains: [
       "placehold.co",
